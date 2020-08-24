@@ -2,6 +2,7 @@ import java.awt.*;
 
 public class Block {
 
+    //TODO Comparable
     private int height;
     private Color color = Color.GRAY;
 

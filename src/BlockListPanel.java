@@ -39,4 +39,9 @@ public class BlockListPanel extends JPanel implements ActionListener, WindowStat
         repaint();
     }
 
+    public BlockList getBlockList()
+    {
+        return blockList;
+    }
+
 }

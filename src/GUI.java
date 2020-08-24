@@ -20,7 +20,9 @@ public class GUI implements ComponentListener {
         containerPanel = new JPanel(new GridBagLayout());
         containerPanel.setBackground(CustomColor.GUNMETAL);
 
-        controlPanel = new ControlPanel(blockList);
+        blockListPanel = new BlockListPanel(blockList);
+        controlPanel = new ControlPanel(blockListPanel);
+
 
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -35,7 +37,6 @@ public class GUI implements ComponentListener {
 
         containerPanel.add(controlPanel, gbc);
 
-        blockListPanel = new BlockListPanel(blockList);
 
         gbc.gridx = 0;
         gbc.gridy = 1;

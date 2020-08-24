@@ -7,16 +7,19 @@ import java.awt.event.ActionListener;
 public class ControlPanel extends JPanel implements ActionListener {
 
     private BlockList blockList;
+    private BlockListPanel blockListPanel;
     private JButton bubbleSort;
     private JLabel operationCount;
     private GridBagConstraints gbc0, gbc1;
     private GridBagLayout layout;
     private int fontSize;
+    private int temp;
 
-    public ControlPanel(BlockList blockList)
+    public ControlPanel(BlockListPanel blockListPanel)
     {
         super();
-        this.blockList = blockList;
+        this.blockListPanel = blockListPanel;
+        this.blockList = blockListPanel.getBlockList();
 
         layout = new GridBagLayout();
         this.setLayout(layout);
@@ -37,6 +40,9 @@ public class ControlPanel extends JPanel implements ActionListener {
         bubbleSort = new JButton("Click to Bubble Sort");
         bubbleSort.setBackground(CustomColor.SAVOY_BLUE);
         bubbleSort.setFocusPainted(false);
+
+        bubbleSort.addActionListener((ActionEvent e) -> {blockList.bubbleSort(); blockListPanel.repaint();} ); //lambda expression
+
 
         add(bubbleSort, gbc0);
 
