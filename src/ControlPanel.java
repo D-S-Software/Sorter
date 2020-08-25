@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ControlPanel extends JPanel implements ActionListener {
+public class ControlPanel extends JPanel {
 
     private BlockList blockList;
     private BlockListPanel blockListPanel;
@@ -41,7 +41,7 @@ public class ControlPanel extends JPanel implements ActionListener {
         bubbleSort.setBackground(CustomColor.SAVOY_BLUE);
         bubbleSort.setFocusPainted(false);
 
-        bubbleSort.addActionListener((ActionEvent e) -> {blockList.bubbleSort(); blockListPanel.repaint();} ); //lambda expression
+        bubbleSort.addActionListener( (ActionEvent e) -> bubbleSortUpdate() ); //VERY IMPORTANT EXPRESSION. lambda expression
 
 
         add(bubbleSort, gbc0);
@@ -66,11 +66,6 @@ public class ControlPanel extends JPanel implements ActionListener {
         super.paintComponent(g);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        operationCount.setText("Operation Count: " + blockList.getOperationCount());
-    }
 
 
     public void updateScaling()
@@ -90,6 +85,20 @@ public class ControlPanel extends JPanel implements ActionListener {
         this.revalidate();
         this.repaint();
         System.out.println("a");
+    }
+
+
+    private void bubbleSortUpdate()
+    {
+        blockList.bubbleSort();
+        setOperationCount(blockList.getOperationCount());
+        blockListPanel.repaint();
+        operationCount.repaint();
+    }
+
+    private void setOperationCount(int n)
+    {
+        operationCount.setText("Operation Count: " + String.format("%,d", n));
     }
 
 }

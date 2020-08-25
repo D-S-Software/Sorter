@@ -9,7 +9,7 @@ public class Main {
 
     public Main()
     {
-        blockList = new BlockList(500,2, 20);
+        blockList = new BlockList(500,5, 15);
         gui = new GUI(blockList);
        // gui.getBlockListPanel().repaint();
 
@@ -30,10 +30,8 @@ public class Main {
 
         if("start".equals(input))
         {
-            main.blockList.bubbleSort();
-            main.gui.getBlockListPanel().repaint();
-            System.out.println("success");
-            System.out.println(main.blockList.getOperationCount());
+            Main m2 = new Main();
+            System.out.println(m2);
         }
     }
 }

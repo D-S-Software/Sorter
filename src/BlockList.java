@@ -22,7 +22,8 @@ public class BlockList extends ArrayList<Block> {
 
         for(int i = 0; i < nBlocks; i++ )
         {
-            this.add(new Block ( (int) ((maxHeight - minHeight)*Math.random() + minHeight) ) );
+            this.add(new Block (minHeight, maxHeight) );
+            System.out.println("Color " + get(i).getColorSum());
         }
     }
 
@@ -49,6 +50,11 @@ public class BlockList extends ArrayList<Block> {
                     swap(j, j - 1);
                     operationCount++;
                 }
+                else if (compareColor(j, j-1) < 0)
+                {
+                    swap(j, j - 1);
+                    operationCount++;
+                }
             }
         }
     }
@@ -57,6 +63,13 @@ public class BlockList extends ArrayList<Block> {
     private int compareHeight(int indexA, int indexB)
     {
         return get(indexA).getHeight() - get(indexB).getHeight();
+    }
+
+    /** FOLLOWS RGB scale. red is low, violet is high, OYGB are in between.
+     * @return positive if A > B. Returns 0 if same. Returns Neg if A < B */
+    private long compareColor(int indexA, int indexB)
+    {
+       return get(indexA).getColorSum() - get(indexB).getColorSum();
     }
 
     private void swap(int indexA, int indexB)
@@ -70,6 +83,7 @@ public class BlockList extends ArrayList<Block> {
     {
         frameWidth = w;
         blockWidth = (int) Math.ceil( frameWidth/(1.0 * this.size()));
+        System.out.println("Block Width" + blockWidth);
         leftBuffer = (frameWidth - size()*blockWidth)/2;
     }
 
